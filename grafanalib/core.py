@@ -1366,14 +1366,30 @@ class NumberColumnStyleType(object):
 class StringColumnStyleType(object):
     TYPE = 'string'
 
+    colorMode = attr.ib(default=None)
+    colors = attr.ib(default=attr.Factory(lambda: [GREEN, ORANGE, RED]))
+    decimals = attr.ib(default=2, validator=instance_of(int))
+    link = attr.ib(default=False, validator=instance_of(bool))
+    linkTooltip = attr.ib(default=None)
+    linkUrl = attr.ib(default=None)
     preserveFormat = attr.ib(validator=instance_of(bool))
     sanitize = attr.ib(validator=instance_of(bool))
+    thresholds = attr.ib(default=attr.Factory(list))
+    unit = attr.ib(default=SHORT_FORMAT)
 
     def to_json_data(self):
         return {
+            'colorMode': self.colorMode,
+            'colors': self.colors,
+            'decimals': self.decimals,
+            'link': self.link,
+            'linkUrl': self.linkUrl,
+            'linkTooltip': self.linkTooltip,
+            'thresholds': self.thresholds,
             'preserveFormat': self.preserveFormat,
             'sanitize': self.sanitize,
             'type': self.TYPE,
+            'unit': self.unit
         }
 
 
