@@ -1365,8 +1365,8 @@ class NumberColumnStyleType(object):
 @attr.s
 class StringColumnStyleType(object):
     TYPE = 'string'
-    preserveFormat = attr.ib(validator=instance_of(bool))
-    sanitize = attr.ib(validator=instance_of(bool))
+    preserveFormat = attr.ib(default=False, validator=instance_of(bool))
+    sanitize = attr.ib(default=False, validator=instance_of(bool))
     colorMode = attr.ib(default=None)
     colors = attr.ib(default=attr.Factory(lambda: [GREEN, ORANGE, RED]))
     decimals = attr.ib(default=2, validator=instance_of(int))
