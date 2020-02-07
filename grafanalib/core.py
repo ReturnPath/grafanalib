@@ -252,42 +252,6 @@ VTYPE_RANGE = "range"
 VTYPE_DEFAULT = VTYPE_AVG
 
 @attr.s
-class Threshold(object):
-    value = attr.ib(default=0)
-    op = attr.ib(default="gt")
-    yaxis = attr.ib(default="left")
-    color_mode = attr.ib(default="warning")
-    line = attr.ib(default=True, validator=instance_of(bool))
-    fill = attr.ib(default=True, validator=instance_of(bool))
-
-    def to_json_data(self):
-        return {
-            "value": self.value,
-            "op": self.op,
-            "yaxis": self.yaxis,
-            "colorMode": self.color_mode,
-            "line": self.line,
-            "fill": self.fill
-        }
-
-@attr.s
-class SeriesOverride(object):
-    alias = attr.ib(default="")
-    bars = attr.ib(default=False)
-    lines = attr.ib(default=True)
-    yaxis = attr.ib(default=1)
-    color = attr.ib(default=None)
-
-    def to_json_data(self):
-        return {
-            "alias": self.alias,
-            "bars": self.bars,
-            "lines": self.lines,
-            "yaxis": self.yaxis,
-            "color": self.color,
-        }
-
-@attr.s
 class Grid(object):
 
     threshold1 = attr.ib(default=None)
@@ -1053,7 +1017,7 @@ class Graph(object):
     span = attr.ib(default=None)
     stack = attr.ib(default=False, validator=instance_of(bool))
     steppedLine = attr.ib(default=False, validator=instance_of(bool))
-    thresholds = attr.ib(default=attr.Factory(Threshold), validator=instance_of(Threshold))
+    thresholds = attr.ib(default=attr.Factory(list))
     timeFrom = attr.ib(default=None)
     timeShift = attr.ib(default=None)
     tooltip = attr.ib(
