@@ -251,6 +251,41 @@ VTYPE_DELTA = "delta"
 VTYPE_RANGE = "range"
 VTYPE_DEFAULT = VTYPE_AVG
 
+@attr.s
+class Threshold(object):
+    value = attr.ib()
+    op = attr.ib(default="gt")
+    yaxis = attr.ib(default="left")
+    color_mode = attr.ib(default="warning")
+    line = attr.ib(default=True, validator=instance_of(bool))
+    fill = attr.ib(default=True, validator=instance_of(bool))
+
+    def to_json_data(self):
+        return {
+            "value": self.value,
+            "op": self.op,
+            "yaxis": self.yaxis,
+            "colorMode": self.color_mode,
+            "line": self.line,
+            "fill": self.fill
+        }
+
+@attr.s
+class SeriesOverride(object):
+    alias = attr.ib()
+    bars = attr.ib(default=False)
+    lines = attr.ib(default=True)
+    yaxis = attr.ib(default=1)
+    color = attr.ib(default=None)
+
+    def to_json_data(self):
+        return {
+            "alias": self.alias,
+            "bars": self.bars,
+            "lines": self.lines,
+            "yaxis": self.yaxis,
+            "color": self.color,
+        }
 
 @attr.s
 class Grid(object):
@@ -1614,42 +1649,4 @@ class Table(object):
             'transform': self.transform,
             'transparent': self.transparent,
             'type': TABLE_TYPE,
-        }
-
-
-@attr.s
-class Threshold(object):
-    value = attr.ib()
-    op = attr.ib(default="gt")
-    yaxis = attr.ib(default="left")
-    color_mode = attr.ib(default="warning")
-    line = attr.ib(default=True, validator=instance_of(bool))
-    fill = attr.ib(default=True, validator=instance_of(bool))
-
-    def to_json_data(self):
-        return {
-            "value": self.value,
-            "op": self.op,
-            "yaxis": self.yaxis,
-            "colorMode": self.color_mode,
-            "line": self.line,
-            "fill": self.fill
-        }
-
-
-@attr.s
-class SeriesOverride(object):
-    alias = attr.ib()
-    bars = attr.ib(default=False)
-    lines = attr.ib(default=True)
-    yaxis = attr.ib(default=1)
-    color = attr.ib(default=None)
-
-    def to_json_data(self):
-        return {
-            "alias": self.alias,
-            "bars": self.bars,
-            "lines": self.lines,
-            "yaxis": self.yaxis,
-            "color": self.color,
         }
