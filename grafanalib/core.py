@@ -1622,6 +1622,7 @@ class Threshold(object):
     yaxis = attr.ib(default="left")
     color_mode = attr.ib(default="warning")
     line = attr.ib(default=True, validator=instance_of(bool))
+    fill = attr.ib(default=True, validator=instance_of(bool))
 
     def to_json_data(self):
         return {
@@ -1630,6 +1631,7 @@ class Threshold(object):
             "yaxis": self.yaxis,
             "colorMode": self.color_mode,
             "line": self.line,
+            "fill": self.fill
         }
 
 
