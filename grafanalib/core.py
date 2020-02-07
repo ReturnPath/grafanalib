@@ -253,7 +253,7 @@ VTYPE_DEFAULT = VTYPE_AVG
 
 @attr.s
 class Threshold(object):
-    value = attr.ib()
+    value = attr.ib(default=0)
     op = attr.ib(default="gt")
     yaxis = attr.ib(default="left")
     color_mode = attr.ib(default="warning")
@@ -272,7 +272,7 @@ class Threshold(object):
 
 @attr.s
 class SeriesOverride(object):
-    alias = attr.ib()
+    alias = attr.ib(default="")
     bars = attr.ib(default=False)
     lines = attr.ib(default=True)
     yaxis = attr.ib(default=1)
